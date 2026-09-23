@@ -1,5 +1,5 @@
 package wordy.ast;
-
+import wordy.interpreter.EvaluationContext;
 import java.util.Map;
 import java.util.Objects;
 
@@ -54,5 +54,11 @@ public class AssignmentNode extends StatementNode {
             + "variable='" + variable + '\''
             + ", expression=" + expression
             + '}';
+    }
+
+    @Override 
+    protected void doRun(EvaluationContext context) {
+        double value = expression.evaluate(context);
+        context.set(variable.getName(), value);
     }
 }
