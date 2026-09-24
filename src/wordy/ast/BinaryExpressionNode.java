@@ -2,7 +2,7 @@ package wordy.ast;
 
 import java.util.Map;
 import java.util.Objects;
-
+import java.io.PrintWriter;
 import wordy.interpreter.EvaluationContext;
 
 import static wordy.ast.Utils.orderedMap;
@@ -80,5 +80,40 @@ public class BinaryExpressionNode extends ExpressionNode {
                     throw new IllegalArgumentException("error");
                 
         }
+    }
+
+
+
+    @Override 
+    public void compile(PrintWriter out) {
+        out.print("(");
+
+    if (operator == Operator.EXPONENTIATION) {
+        out.print("Math.pow");
+        lhs.compile(out);
+        out.print(", ");
+        rhs.compile(out);
+     
+    } else {
+        lhs.compile(out);
+        switch (operator) {
+            case ADDITION:
+                out.print(" + ");
+                break;
+            case SUBTRACTION:
+                out.print(" - ");
+                break;
+            case MULTIPLICATION:
+                out.print(" * ");
+                break;
+            case DIVISION:
+                out.print(" / ");
+                break;
+            default:
+                throw new IllegalArgumentException("error");
+        }
+        rhs.compile(out);
+    }
+    out.print(")");
     }
 }

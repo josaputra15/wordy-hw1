@@ -1,7 +1,7 @@
 package wordy.ast;
-
+import java.io.PrintWriter;
 import wordy.interpreter.EvaluationContext;
-
+// https://docs.oracle.com/javase/8/docs/api/java/io/PrintWriter.html Source for PrintWriter class
 import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 public class VariableNode extends ExpressionNode {
     private final String name;
-
+;
     public VariableNode(String name) {
         this.name = name;
     }
@@ -60,5 +60,12 @@ public class VariableNode extends ExpressionNode {
     protected double doEvaluate(EvaluationContext context) {
         Double result = context.get(name);
         return (result == null) ? 0 : result;
+    }
+
+
+    @Override 
+    public void compile(PrintWriter out) {
+        out.print("context.");
+        out.print(name);
     }
 }   
