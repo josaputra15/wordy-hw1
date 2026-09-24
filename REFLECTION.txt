@@ -1,0 +1,4 @@
+Now that I have done this daunting puzzle :). I compared my codes and Paul’s. There are still 2 tests from me that are not passing. They both are in the compiler test, which are compileBlock and compileBinaryExpression. After looking at Paul’s Binary expression, I get that why my solution is failing. 
+I think I am on the right track but basically, Paul handled the power first and returns Math.pow() with no extra parentheses. My logix was that I wrapped everything first, and that is where I got (( Math.pow(...))+(Math.pow(...)) ) (double parentheses). 
+Another similar mistake was coming from compileBlock(), the test includes Math.pow() which I didn’t have since I was not able to make it worked out. This was a really challenging yet very refreshing puzzle. It took me a lot of time to understand and figure out stuff. Even though my solutions are not perfect, I learned a lot from this activity
+
